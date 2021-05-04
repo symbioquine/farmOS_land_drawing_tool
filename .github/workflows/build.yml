@@ -37,7 +37,7 @@ jobs:
       - name: Copy Module to Release Working Dir
         run: |
           cp ./main/{README.md,LICENSE} ./release/
-          cp -r ./main/farmos_vue_demo_page/* ./release/
+          cp -r ./main/farmos_land_drawing_tool/* ./release/
 
       - name: Push Changes to Release Branch and Tag
         run: |

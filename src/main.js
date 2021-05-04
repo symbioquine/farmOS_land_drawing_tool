@@ -4,4 +4,4 @@ import App from './App.vue';
 
 new Vue({
   render: h => h(App),
-}).$mount('#farm-vue-demo-page-app');
+}).$mount('#farm-land-drawing-tool-app');

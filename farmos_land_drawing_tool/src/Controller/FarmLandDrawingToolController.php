@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\farmos_vue_demo_page\Controller;
+namespace Drupal\farmos_land_drawing_tool\Controller;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Defines FarmLandDrawingToolController class.
  */
-class FarmVueDemoPageController extends ControllerBase {
+class FarmLandDrawingToolController extends ControllerBase {
 
   /**
    * The request stack.
@@ -36,7 +36,7 @@ class FarmVueDemoPageController extends ControllerBase {
 
 
   /**
-   * Constructs a new FarmVueDemoPageController object.
+   * Constructs a new FarmLandDrawingToolController object.
    *
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *          The request stack.
@@ -56,10 +56,10 @@ class FarmVueDemoPageController extends ControllerBase {
    */
   public function content() {
     return [
-      '#markup' => '<div id="farm-vue-demo-page-app"></div>',
+      '#markup' => '<div id="farm-land-drawing-tool-app"></div>',
       '#attached' => [
         'library' => [
-          'farmos_vue_demo_page/farmos_vue_demo_page'
+          'farmos_land_drawing_tool/farmos_land_drawing_tool'
         ],
       ],
     ];

@@ -1,0 +1,7 @@
+services:
+  farmos_land_drawing_tool.top_level_controller:
+    class: Drupal\farmos_land_drawing_tool\Controller\FarmLandDrawingToolController
+    arguments:
+     - '@request_stack'
+     - '@config.factory'
+     - '@current_user'

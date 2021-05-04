@@ -1,6 +1,0 @@
-farmos_vue_demo_page.content:
-  path: '/vue_demo_page'
-  defaults:
-    _controller: farmos_vue_demo_page.top_level_controller:content
-  requirements:
-    _permission: 'access content'

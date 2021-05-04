@@ -1,7 +1,0 @@
-services:
-  farmos_vue_demo_page.top_level_controller:
-    class: Drupal\farmos_vue_demo_page\Controller\FarmVueDemoPageController
-    arguments:
-     - '@request_stack'
-     - '@config.factory'
-     - '@current_user'

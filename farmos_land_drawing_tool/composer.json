@@ -1,0 +1,19 @@
+{
+  "name": "symbioquine/farmos_land_drawing_tool",
+  "description": "A land drawing tool contrib module for farmOS.",
+  "type": "drupal-module",
+  "homepage": "https://github.com/symbioquine/farmOS_land_drawing_tool",
+  "authors": [
+    {
+      "name": "Symbioquine",
+      "homepage": "https://github.com/symbioquine",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/symbioquine/farmOS_land_drawing_tool/issues",
+    "source": "https://github.com/symbioquine/farmOS_land_drawing_tool"
+  },
+  "license": "GPL-3.0-or-later",
+  "minimum-stability": "dev"
+}

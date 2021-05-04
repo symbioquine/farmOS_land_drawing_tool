@@ -37,18 +37,18 @@ services:
         su www-data -s /bin/bash <<'EOF'
             set -e
 
-            composer config repositories.farmos_dev_modules '{"type": "path", "url": "/farmos_dev_modules/farmos_vue_demo_page"}'
+            composer config repositories.farmos_dev_modules '{"type": "path", "url": "/farmos_dev_modules/farmos_land_drawing_tool"}'
 
-            composer require symbioquine/farmos_vue_demo_page @dev
+            composer require symbioquine/farmos_land_drawing_tool @dev
 
-            drush --root=/opt/drupal pm-enable farmos_vue_demo_page
+            drush --root=/opt/drupal pm-enable farmos_land_drawing_tool
         EOF
 
         exec docker-entrypoint.sh apache2-foreground
     volumes:
       - './www:/opt/drupal'
       - './php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini'
-      - '../farmos_vue_demo_page:/farmos_dev_modules/farmos_vue_demo_page'
+      - '../farmos_land_drawing_tool:/farmos_dev_modules/farmos_land_drawing_tool'
     ports:
       - '80:80'
     environment:

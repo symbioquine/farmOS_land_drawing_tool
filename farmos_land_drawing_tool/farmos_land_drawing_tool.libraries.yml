@@ -1,0 +1,7 @@
+farmos_land_drawing_tool:
+  js:
+    js/farmos_land_drawing_tool.js:
+      preprocess: false
+      minified: true
+  dependencies:
+    - farm_map/farmOS-map

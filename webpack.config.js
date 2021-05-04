@@ -4,12 +4,12 @@ const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   entry: {
-    'farmos_vue_demo_page': {
+    'farmos_land_drawing_tool': {
       'import': `${__dirname}/src/main.js`,
     },
   },
   output: {
-    path: `${__dirname}/farmos_vue_demo_page/js`,
+    path: `${__dirname}/farmos_land_drawing_tool/js`,
     filename: '[name].js',
   },
   optimization: {
@@ -27,8 +27,8 @@ module.exports = {
       context: () => true,
       target: 'http://localhost:80',
       bypass: function (req, res, proxyOptions) {
-        if (req.path.indexOf('modules/farmos_vue_demo_page/js/farmos_vue_demo_page.js') !== -1) {
-          return '/farmos_vue_demo_page.js';
+        if (req.path.indexOf('modules/farmos_land_drawing_tool/js/farmos_land_drawing_tool.js') !== -1) {
+          return '/farmos_land_drawing_tool.js';
         }
         if (req.path.indexOf('.hot-update.js') !== -1) {
           return '/' + req.path.split('/').pop();
