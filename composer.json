@@ -1,0 +1,19 @@
+{
+  "name": "symbioquine/farmos_vue_demo_page",
+  "description": "A demo page for farmOS built with Vue.js.",
+  "type": "drupal-module",
+  "homepage": "https://github.com/symbioquine/farmOS_vue_demo_page",
+  "authors": [
+    {
+      "name": "Symbioquine",
+      "homepage": "https://github.com/symbioquine",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/symbioquine/farmOS_vue_demo_page/issues",
+    "source": "https://github.com/symbioquine/farmOS_vue_demo_page"
+  },
+  "license": "MIT",
+  "minimum-stability": "dev"
+}

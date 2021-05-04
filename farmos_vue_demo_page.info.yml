@@ -1,0 +1,5 @@
+name: farmOS Land Drawing Tool
+description: Provides a demo page for farmOS built with Vue.js.
+type: module
+package: farmOS Contrib
+core_version_requirement: ^9
