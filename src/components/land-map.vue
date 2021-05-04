@@ -5,7 +5,19 @@
 <script>
 import Vue from 'vue';
 
+import VectorLayer from 'ol/layer/Vector';
+
 export default {
+  props: {
+    unsavedLandAssetsVectorSource: {
+      type: Object,
+      required: true,
+    },
+    existingLandAssetsVectorSource: {
+      type: Object,
+      required: true,
+    },
+  },
   mounted: function () {
     const vm = this;
 
@@ -22,6 +34,24 @@ export default {
       vm.mapInstance = farmOS.map.create(this.$refs['map-div'], {
           units,
       });
+
+      vm.unsavedLandAssetsLayer = new VectorLayer({
+        title: "Unsaved Land Assets",
+        source: vm.unsavedLandAssetsVectorSource,
+        declutter: false,
+      });
+
+      vm.existingLandAssetsLayer = new VectorLayer({
+        title: "Existing Land Assets",
+        source: vm.existingLandAssetsVectorSource,
+        declutter: false,
+      });
+
+      vm.mapInstance.map.addLayer(vm.unsavedLandAssetsLayer);
+      vm.mapInstance.map.addLayer(vm.existingLandAssetsLayer);
+
+      vm.mapInstance.addBehavior('edit', { layer: vm.unsavedLandAssetsLayer });
+      vm.mapInstance.addBehavior('snappingGrid');
 
     });
   },

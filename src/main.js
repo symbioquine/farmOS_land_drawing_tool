@@ -1,7 +1,10 @@
 import Vue from 'vue';
 
 import App from './App.vue';
-import './auto-register-vue-components';
+
+import importAll from './import-vue-components';
+
+const fields = importAll(require.context('./components/', true, /\.vue$/));
 
 
 new Vue({
