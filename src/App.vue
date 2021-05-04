@@ -1,5 +1,5 @@
 <template>
-  <div>Hello Vue World!</div>
+  <land-map></land-map>
 </template>
 
 <script>

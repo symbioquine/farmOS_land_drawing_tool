@@ -55,11 +55,19 @@ class FarmLandDrawingToolController extends ControllerBase {
    * Top-level handler for demo page requests.
    */
   public function content() {
+    // Get the system of measurement to populate drupalSettings.farm_map.units.
+    $measurement = $this->configFactory->get('quantity.settings')->get('system_of_measurement');
+
     return [
       '#markup' => '<div id="farm-land-drawing-tool-app"></div>',
       '#attached' => [
         'library' => [
           'farmos_land_drawing_tool/farmos_land_drawing_tool'
+        ],
+        'drupalSettings' => [
+          'farm_map' => [
+            units => $measurement,
+          ],
         ],
       ],
     ];
