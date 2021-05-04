@@ -1,0 +1,28 @@
+name: Run tests
+on:
+  schedule:
+    - cron: '0 8 * * *' # Run at 8AM UTC.
+
+jobs:
+  test-composer-install:
+    name: Test installation via composer
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Get a docker-compose.yml file approximating a production site
+        run: curl https://raw.githubusercontent.com/symbioquine/farmOS_vue_demo_page/development/docker/docker-compose.prod-demo.yml -o docker-compose.yml
+      - name: Start containers
+        run: docker-compose up -d
+      - name: Wait until www container is ready
+        run: until [ -f ./www/www-container-fs-ready ]; do sleep 0.1; done && while { ! exec 3<>/dev/tcp/localhost/5432; } > /dev/null 2>&1; do sleep 0.1; done
+      - name: Do a site-install
+        run: docker-compose exec -u www-data -T www bash -c 'drush site-install farm --locale=en --db-url=pgsql://farm:farm@db/farm --site-name=Test0 --account-name=root --account-pass=test'
+      - name: Add farmOS_vue_demo_page-2.x-dev via composer
+        run: docker-compose exec -u www-data -T www composer require symbioquine/farmos_vue_demo_page
+      - name: Use drush to enable farmOS_vue_demo_page
+        run: docker-compose exec -u www-data -T www drush en farmos_vue_demo_page
+      - name: Perform Minimal Validation That Demo Page Loads
+        run: |
+            set -e
+            OAUTH2_ACCESS_TOKEN=`curl -X POST -d "grant_type=password&username=root&password=test&client_id=farm&scope=openid" http://localhost/oauth/token | grep -Po 'access_token":"\K[^"]+'`
+            DEMO_PAGE_RESPONSE=`curl --header "Authorization: Bearer $OAUTH2_ACCESS_TOKEN" "http://localhost/vue_demo_page"`
+            echo $DEMO_PAGE_RESPONSE | grep -q 'farm-vue-demo-page-app'

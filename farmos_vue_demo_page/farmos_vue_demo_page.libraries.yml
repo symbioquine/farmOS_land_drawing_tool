@@ -1,0 +1,5 @@
+farmos_vue_demo_page:
+  js:
+    js/farmos_vue_demo_page.js:
+      preprocess: false
+      minified: true
