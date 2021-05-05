@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "farmOS-map": "github:farmOS/farmOS-map#v1.4.1",
     "lodash": "^4.17.21",
     "vue": "^2.6.12",
     "vue-async-computed": "^3.9.0",

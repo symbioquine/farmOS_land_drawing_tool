@@ -24,11 +24,17 @@ import axios from 'axios';
 import Vue from 'vue';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
+import WKT from 'ol/format/WKT';
 import Feature from 'ol/Feature';
+
+import projection from 'farmOS-map/src/projection';
 
 import importAll from './import-vue-components';
 
 const fields = importAll(require.context('./fields/', true, /\.vue$/));
+
+
+const wkt = new WKT();
 
 
 export default {
@@ -68,6 +74,7 @@ export default {
           attributes: {
             name: f.get('name') || 'Unnamed Land Asset',
             land_type: f.get('land_type') || 'other',
+            intrinsic_geometry: wkt.writeGeometry(f.getGeometry(), projection),
           },
         },
       }, {
