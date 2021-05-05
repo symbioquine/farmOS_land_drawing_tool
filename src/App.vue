@@ -37,13 +37,13 @@ export default {
     unsavedLandAssetsVectorSource: new VectorSource(),
     existingLandAssetsVectorSource: new VectorSource({
       format: new GeoJSON(),
-      url: new URL('/assets/geojson/full/land?is_location=1', window.location.origin + drupalSettings.path.baseUrl),
+      url: createUrl('/assets/geojson/full/land?is_location=1'),
     }),
   }),
   asyncComputed: {
     recentlyCreatedLandAssets: {
       async get() {
-        const result = await axios.get(new URL('/api/asset/land?is_location=1&is_fixed=1&sort=revision_created', window.location.origin + drupalSettings.path.baseUrl));
+        const result = await axios.get(createUrl('/api/asset/land?is_location=1&is_fixed=1&sort=revision_created'));
         return result.data.data.map((raw_asset) => {
           return new Feature({
             name: raw_asset.attributes.name,
@@ -55,10 +55,33 @@ export default {
   },
   methods: {
     async saveLandAssets() {
-      console.log("saveLandAssets");
+      const tokenResponse = await axios.get(createUrl('/session/token'));
+
+      this.unsavedLandAssetsVectorSource.getFeatures().forEach(f => this.saveFeatureAsLandAsset(f, tokenResponse.data));
+    },
+    async saveFeatureAsLandAsset(f, antiCsrfToken) {
+
+      await axios.post(createUrl('/api/asset/land'), {
+        data: {
+          type: "asset--land",
+          attributes: {
+            name: f.get('name') || 'Unnamed Land Asset',
+            land_type: 'other',
+          },
+        },
+      }, {
+        headers: {
+          'content-type': 'application/vnd.api+json',
+          'X-CSRF-Token': antiCsrfToken,
+        },
+      });
     },
   },
 };
+
+function createUrl(pathSuffix) {
+  return new URL(pathSuffix, window.location.origin + drupalSettings.path.baseUrl);
+}
 
 function orderedByWeight(fields) {
   return fields.concat().sort((a, b) => a.fieldWeight - b.fieldWeight);
