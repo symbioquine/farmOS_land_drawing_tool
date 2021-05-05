@@ -12,6 +12,10 @@
 
       :recently-created-land-assets="recentlyCreatedLandAssets"
     ></land-asset-table>
+    <bottom-bar
+      :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"
+      @save="saveLandAssets"
+    ></bottom-bar>
   </div>
 </template>
 
@@ -47,6 +51,11 @@ export default {
         });
       },
       default: [],
+    },
+  },
+  methods: {
+    async saveLandAssets() {
+      console.log("saveLandAssets");
     },
   },
 };
