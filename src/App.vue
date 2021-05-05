@@ -47,6 +47,7 @@ export default {
         return result.data.data.map((raw_asset) => {
           return new Feature({
             name: raw_asset.attributes.name,
+            land_type: raw_asset.attributes.land_type,
           });
         });
       },
@@ -66,7 +67,7 @@ export default {
           type: "asset--land",
           attributes: {
             name: f.get('name') || 'Unnamed Land Asset',
-            land_type: 'other',
+            land_type: f.get('land_type') || 'other',
           },
         },
       }, {

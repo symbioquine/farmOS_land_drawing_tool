@@ -33,6 +33,7 @@
     "lodash": "^4.17.21",
     "vue": "^2.6.12",
     "vue-async-computed": "^3.9.0",
-    "vue-loader": "^15.9.6"
+    "vue-loader": "^15.9.6",
+    "vue-select": "^3.11.2"
   }
 }

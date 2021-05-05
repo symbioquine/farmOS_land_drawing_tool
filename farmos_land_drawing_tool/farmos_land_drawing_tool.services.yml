@@ -4,4 +4,5 @@ services:
     arguments:
      - '@request_stack'
      - '@config.factory'
+     - '@entity_field.manager'
      - '@current_user'
