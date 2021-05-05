@@ -49,7 +49,7 @@ export default {
   asyncComputed: {
     recentlyCreatedLandAssets: {
       async get() {
-        const result = await axios.get(createUrl('/api/asset/land?is_location=1&is_fixed=1&sort=revision_created'));
+        const result = await axios.get(createUrl('/api/asset/land?is_location=1&is_fixed=1&sort=-revision_created'));
         return result.data.data.map((raw_asset) => {
           return new Feature({
             name: raw_asset.attributes.name,
