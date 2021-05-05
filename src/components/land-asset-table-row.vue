@@ -35,10 +35,6 @@ export default {
       type: Object,
       required: true,
     },
-    existingLandAssetsVectorSource: {
-      type: Object,
-      required: true,
-    },
   },
   methods: {
     validate() {

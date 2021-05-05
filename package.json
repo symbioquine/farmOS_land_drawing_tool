@@ -29,8 +29,10 @@
     "webpack-dev-server": "^4.0.0-beta.2"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "lodash": "^4.17.21",
     "vue": "^2.6.12",
+    "vue-async-computed": "^3.9.0",
     "vue-loader": "^15.9.6"
   }
 }

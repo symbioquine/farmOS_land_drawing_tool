@@ -16,7 +16,6 @@
                 :fields="fields"
 
                 :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"
-                :existing-land-assets-vector-source="existingLandAssetsVectorSource"
           ></land-asset-table-row>
         </tbody>
       </table>
@@ -35,8 +34,8 @@ export default {
       type: Object,
       required: true,
     },
-    existingLandAssetsVectorSource: {
-      type: Object,
+    recentlyCreatedLandAssets: {
+      type: Array,
       required: true,
     },
   },
@@ -46,7 +45,7 @@ export default {
     features() {
       return [
         ...this.unsavedLandAssetsVectorSource.getFeatures(),
-        ...this.existingLandAssetsVectorSource.getFeatures(),
+        ...this.recentlyCreatedLandAssets,
       ];
     },
   },

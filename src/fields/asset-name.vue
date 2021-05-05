@@ -1,13 +1,14 @@
 <template>
   <div>
     <div v-if="!isUnsaved">
-        {{ value.name }}
+        {{ value.ol_uid }} {{ value.get('name') }}
     </div>
     <div v-else>
       <input ref='input'
-          v-model="value.name"
+          :value="value.get('name')"
+          @input="value.set('name', $event.target.value)"
           placeholder="Unnamed Land Asset"
-          @input="value.changed()"></input>
+      ></input>
     </div>
   </div>
 </template>

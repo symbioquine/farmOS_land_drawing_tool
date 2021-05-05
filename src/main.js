@@ -1,10 +1,16 @@
 import Vue from 'vue';
 
-import App from './App.vue';
+import AsyncComputed from 'vue-async-computed';
 
+Vue.use(AsyncComputed);
+
+/* eslint-disable-next-line import/first */
 import importAll from './import-vue-components';
 
-const fields = importAll(require.context('./components/', true, /\.vue$/));
+importAll(require.context('./components/', true, /\.vue$/));
+
+/* eslint-disable-next-line import/first */
+import App from './App.vue';
 
 
 new Vue({

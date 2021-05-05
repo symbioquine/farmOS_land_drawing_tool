@@ -53,8 +53,19 @@ export default {
       vm.mapInstance.addBehavior('edit', { layer: vm.unsavedLandAssetsLayer });
       vm.mapInstance.addBehavior('snappingGrid');
 
+      // Zoom to the existing land geometries once they load
+      vm.existingLandAssetsVectorSource.on('change', function () {
+        vm.mapInstance.zoomToVectors();
+      });
+
     });
   },
 };
 
 </script>
+
+<style>
+div.farm-map div.ol-control.ol-edit {
+  top: 5.5em;
+}
+</style>
