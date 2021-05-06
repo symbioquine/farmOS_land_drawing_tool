@@ -1,5 +1,5 @@
 <template>
-  <div class="farm-map" style="height: 500px;" ref="map-div"></div>
+  <div class="farm-map" style="height: 460px;" ref="map-div"></div>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!isUnsaved">
-        {{ value.ol_uid }} {{ value.get('name') }}
+        {{ value.get('name') }}
     </div>
     <div v-else>
       <input ref='input'

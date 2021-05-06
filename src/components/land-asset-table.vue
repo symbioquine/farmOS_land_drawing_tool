@@ -1,5 +1,5 @@
 <template>
-    <div class="" style="width: calc(100vw - (100vw - 100%)); flex: 1; overflow: auto;">
+    <div class="gin-table-scroll-wrapper" style="width: calc(100vw - (100vw - 100%));">
       <table class="table">
         <thead>
           <tr>

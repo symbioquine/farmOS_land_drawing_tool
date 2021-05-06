@@ -1,15 +1,19 @@
+/* eslint-disable import/first, import/newline-after-import */
+
 import Vue from 'vue';
 
 import AsyncComputed from 'vue-async-computed';
-
 Vue.use(AsyncComputed);
 
-/* eslint-disable-next-line import/first */
+import PortalVue from 'portal-vue';
+Vue.use(PortalVue);
+
+
 import importAll from './import-vue-components';
 
 importAll(require.context('./components/', true, /\.vue$/));
 
-/* eslint-disable-next-line import/first */
+
 import App from './App.vue';
 
 

@@ -1,5 +1,9 @@
 <template>
   <div class="land-asset-drawing-tool">
+    <local-actions-save-button
+      :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"
+      @save="saveLandAssets"
+    ></local-actions-save-button>
     <land-map
        :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"
        :existing-land-assets-vector-source="existingLandAssetsVectorSource"
@@ -12,10 +16,6 @@
 
       :recently-created-land-assets="recentlyCreatedLandAssets"
     ></land-asset-table>
-    <bottom-bar
-      :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"
-      @save="saveLandAssets"
-    ></bottom-bar>
   </div>
 </template>
 
@@ -66,7 +66,10 @@ export default {
 
       const savePromises = this.unsavedLandAssetsVectorSource.getFeatures().map(f => this.saveFeatureAsLandAsset(f, tokenResponse.data));
 
-      Promise.all(savePromises).finally(() => this.$asyncComputed.recentlyCreatedLandAssets.update());
+      Promise.all(savePromises).finally(() => {
+        this.$asyncComputed.recentlyCreatedLandAssets.update();
+        this.existingLandAssetsVectorSource.refresh();
+      });
     },
     async saveFeatureAsLandAsset(f, antiCsrfToken) {
 
