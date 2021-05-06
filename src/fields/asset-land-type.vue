@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!isUnsaved">
-      {{ value.get('land_type') }}
+      {{ landTypeLabelsByType[value.get('land_type')] }}
     </div>
     <div v-else>
       <v-select
@@ -39,6 +39,7 @@ export default {
     },
   },
   data: () => ({
+    landTypeLabelsByType: drupalSettings.farmos_land_drawing_tool.land_type_options,
     landTypeOptions: Object.entries(drupalSettings.farmos_land_drawing_tool.land_type_options).map(o => ({id: o[0], label: o[1]})),
   }),
 }
