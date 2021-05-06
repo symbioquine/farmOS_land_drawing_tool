@@ -64,11 +64,13 @@ export default {
     async saveLandAssets() {
       const tokenResponse = await axios.get(createUrl('/session/token'));
 
-      this.unsavedLandAssetsVectorSource.getFeatures().forEach(f => this.saveFeatureAsLandAsset(f, tokenResponse.data));
+      const savePromises = this.unsavedLandAssetsVectorSource.getFeatures().map(f => this.saveFeatureAsLandAsset(f, tokenResponse.data));
+
+      Promise.all(savePromises).finally(() => this.$asyncComputed.recentlyCreatedLandAssets.update());
     },
     async saveFeatureAsLandAsset(f, antiCsrfToken) {
 
-      await axios.post(createUrl('/api/asset/land'), {
+      const postResponse = await axios.post(createUrl('/api/asset/land'), {
         data: {
           type: "asset--land",
           attributes: {
@@ -83,6 +85,8 @@ export default {
           'X-CSRF-Token': antiCsrfToken,
         },
       });
+
+      this.unsavedLandAssetsVectorSource.removeFeature(f);
     },
   },
 };
