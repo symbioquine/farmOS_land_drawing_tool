@@ -16,6 +16,12 @@
                 :fields="fields"
 
                 :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"
+
+                @mouseover.native="feature.set('mouseOver', true)"
+                @mouseleave.native="feature.set('mouseOver', false)"
+
+                @focus="feature.set('hasFocus', true)"
+                @blur="feature.set('hasFocus', false)"
           ></land-asset-table-row>
         </tbody>
       </table>

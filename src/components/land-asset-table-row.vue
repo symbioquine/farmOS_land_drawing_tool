@@ -9,6 +9,9 @@
             :is-unsaved="isUnsaved"
 
             :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"
+
+            @focus="$emit('focus')"
+            @blur="$emit('blur')"
       ></div>
     </td>
   </tr>

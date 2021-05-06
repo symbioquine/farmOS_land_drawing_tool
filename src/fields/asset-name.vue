@@ -8,6 +8,8 @@
           :value="value.get('name')"
           @input="value.set('name', $event.target.value)"
           placeholder="Unnamed Land Asset"
+          @focus="$emit('focus')"
+          @blur="$emit('blur')"
       ></input>
     </div>
   </div>

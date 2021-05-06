@@ -10,6 +10,8 @@
         :reduce="o => o.id"
         :value="value.get('land_type')"
         @input="value.set('land_type', $event)"
+        @search:focus="$emit('focus')"
+        @search:blur="$emit('blur')"
       ></v-select>
     </div>
   </div>
