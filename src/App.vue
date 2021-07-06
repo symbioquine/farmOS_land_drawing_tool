@@ -5,14 +5,13 @@
       @save="saveLandAssets"
     ></local-actions-save-button>
     <land-map
+       ref="landMap"
        :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"
-       :existing-land-assets-vector-source="existingLandAssetsVectorSource"
     ></land-map>
     <land-asset-table ref="plantingTable"
       :fields="fields"
 
       :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"
-      :existing-land-assets-vector-source="existingLandAssetsVectorSource"
 
       :recently-created-land-assets="recentlyCreatedLandAssets"
     ></land-asset-table>
@@ -24,27 +23,19 @@ import axios from 'axios';
 import Vue from 'vue';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
-import WKT from 'ol/format/WKT';
 import Feature from 'ol/Feature';
 
-import projection from 'farmOS-map/src/projection';
+import { projection } from '@farmos.org/farmos-map';
 
 import importAll from './import-vue-components';
 
 const fields = importAll(require.context('./fields/', true, /\.vue$/));
 
 
-const wkt = new WKT();
-
-
 export default {
   data: () => ({
     fields: orderedByWeight(fields),
     unsavedLandAssetsVectorSource: new VectorSource(),
-    existingLandAssetsVectorSource: new VectorSource({
-      format: new GeoJSON(),
-      url: createUrl('/assets/geojson/full/land?is_location=1'),
-    }),
   }),
   asyncComputed: {
     recentlyCreatedLandAssets: {
@@ -68,10 +59,17 @@ export default {
 
       Promise.all(savePromises).finally(() => {
         this.$asyncComputed.recentlyCreatedLandAssets.update();
-        this.existingLandAssetsVectorSource.refresh();
+        // this.existingLandAssetsVectorSource.refresh();
+        this.$refs.landMap.refreshAssetTypeLayers();
       });
     },
     async saveFeatureAsLandAsset(f, antiCsrfToken) {
+	  const { default: WKT } = await import('ol/format/WKT');
+
+	  /* eslint-disable-next-line no-console,no-undef */
+	  console.log(__webpack_public_path__);
+
+	  const wkt = new WKT();
 
       const postResponse = await axios.post(createUrl('/api/asset/land'), {
         data: {

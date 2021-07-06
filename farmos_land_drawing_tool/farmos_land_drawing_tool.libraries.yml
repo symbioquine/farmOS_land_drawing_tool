@@ -4,4 +4,4 @@ farmos_land_drawing_tool:
       preprocess: false
       minified: true
   dependencies:
-    - farm_map/farmOS-map
+    - farm_map/farm_map

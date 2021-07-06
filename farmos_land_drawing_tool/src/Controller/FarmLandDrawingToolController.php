@@ -67,26 +67,29 @@ class FarmLandDrawingToolController extends ControllerBase {
    * Top-level handler for demo page requests.
    */
   public function content() {
-    // Get the system of measurement to populate drupalSettings.farm_map.units.
-    $measurement = $this->configFactory->get('quantity.settings')->get('system_of_measurement');
-
     $landAssetFields = $this->entityFieldManager->getFieldDefinitions('asset', 'land');
 
     // Get the valid land type options
     $validLandTypes = options_allowed_values($landAssetFields['land_type']);
 
     return [
-      '#markup' => '<div id="farm-land-drawing-tool-app"></div>',
-      '#attached' => [
-        'library' => [
-          'farmos_land_drawing_tool/farmos_land_drawing_tool'
+      'map-prototype' => [
+        '#type' => 'farm_map',
+        '#attributes' => [
+            'id' => 'farm-land-drawing-tool-map-prototype',
+            'data-map-instantiator' => 'farm-land-drawing-tool',
         ],
-        'drupalSettings' => [
-          'farm_map' => [
-            units => $measurement,
+      ],
+      'app' => [
+        '#markup' => '<div id="farm-land-drawing-tool-app"></div>',
+        '#attached' => [
+          'library' => [
+            'farmos_land_drawing_tool/farmos_land_drawing_tool'
           ],
-          'farmos_land_drawing_tool' => [
-            'land_type_options' => $validLandTypes,
+          'drupalSettings' => [
+            'farmos_land_drawing_tool' => [
+              'land_type_options' => $validLandTypes,
+            ],
           ],
         ],
       ],

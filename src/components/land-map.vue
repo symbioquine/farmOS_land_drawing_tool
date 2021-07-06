@@ -1,5 +1,5 @@
 <template>
-  <div class="farm-map" style="height: 460px;" ref="map-div"></div>
+  <div class="farm-land-map" ref="map-container-div"></div>
 </template>
 
 <script>
@@ -20,27 +20,24 @@ export default {
       type: Object,
       required: true,
     },
-    existingLandAssetsVectorSource: {
-      type: Object,
-      required: true,
-    },
   },
   mounted: function () {
     const vm = this;
 
+    // Code that will run only after the
+    // entire view has been rendered
     this.$nextTick(() => {
 
-      // Get the units.
-      let units = 'metric';
-      if (!!drupalSettings.farm_map.units) {
-        units = drupalSettings.farm_map.units;
-      }
+      const mapPrototypeElement = document.getElementById('farm-land-drawing-tool-map-prototype');
+      mapPrototypeElement.style.display = 'none';
 
-      // Code that will run only after the
-      // entire view has been rendered
-      vm.mapInstance = farmOS.map.create(this.$refs['map-div'], {
-          units,
-      });
+      const mapElement = mapPrototypeElement.cloneNode();
+      mapElement.removeAttribute('id');
+      mapElement.style.display = 'block';
+
+      this.$refs['map-container-div'].appendChild(mapElement);
+
+      vm.mapInstance = Drupal.behaviors.farm_map.createMapInstance(mapElement, mapElement, 'farm-land-drawing-tool-map-prototype', {});
 
       const styleFn = function(feature) {
         const isHighlighted = (f) => f.get('mouseOver') || f.get('hasFocus');
@@ -96,32 +93,28 @@ export default {
         declutter: false,
       });
 
-      vm.existingLandAssetsLayer = new VectorLayer({
-        title: "Existing Land Assets",
-        source: vm.existingLandAssetsVectorSource,
-        style: styleFn,
-        declutter: false,
-      });
-
       vm.mapInstance.map.addLayer(vm.unsavedLandAssetsLayer);
-      vm.mapInstance.map.addLayer(vm.existingLandAssetsLayer);
 
       vm.mapInstance.addBehavior('edit', { layer: vm.unsavedLandAssetsLayer });
+      vm.mapInstance.addBehavior('measure', { layer: vm.unsavedLandAssetsLayer });
       vm.mapInstance.addBehavior('snappingGrid');
-
-      // Zoom to the existing land geometries once they load
-      vm.existingLandAssetsVectorSource.on('change', function () {
-        vm.mapInstance.zoomToVectors();
-      });
-
     });
+  },
+  methods: {
+    refreshAssetTypeLayers() {
+      const allLocationsAssetTypeLayer = this.mapInstance.map.getLayers().getArray().find(layer => layer.get('title') == 'All locations');
+
+      if (allLocationsAssetTypeLayer) {
+        allLocationsAssetTypeLayer.getSource().refresh();
+      }
+    },
   },
 };
 
 </script>
 
 <style>
-div.farm-map div.ol-control.ol-edit {
+div.farm-land-map div.ol-control.ol-edit {
   top: 5.5em;
 }
 </style>

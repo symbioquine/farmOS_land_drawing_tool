@@ -11,13 +11,7 @@ module.exports = {
   output: {
     path: `${__dirname}/farmos_land_drawing_tool/js`,
     filename: '[name].js',
-  },
-  optimization: {
-    splitChunks: {
-      // Setting this to 1MB rather than the default of 50KB to avoid
-      // Random vendor chunks being generated
-      enforceSizeThreshold: 1024 * 1024,
-    },
+    clean: true,
   },
   performance: {
     hints: false,
@@ -27,8 +21,8 @@ module.exports = {
       context: () => true,
       target: 'http://localhost:80',
       bypass: function (req, res, proxyOptions) {
-        if (req.path.indexOf('modules/farmos_land_drawing_tool/js/farmos_land_drawing_tool.js') !== -1) {
-          return '/farmos_land_drawing_tool.js';
+        if (req.path.indexOf('modules/farmos_land_drawing_tool/js/') !== -1) {
+          return '/' + req.path.split('/').pop();
         }
         if (req.path.indexOf('.hot-update.js') !== -1) {
           return '/' + req.path.split('/').pop();
@@ -51,18 +45,7 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
   ],
-  externals: function ({context, request}, callback) {
-    // Externalize all OpenLayers `ol` imports
-    if (/^ol(\/.*)?$/.test(request)) {
-      const modifiedRequest = request
-        // Remove '.js' suffix - if present
-        .replace(/\.js$/, "")
-        // Replace filesystem separators '/' with module separators '.'
-        .replace(/\//g, ".");
-      return callback(null, modifiedRequest);
-    }
-
-    // Continue without externalizing the import
-    callback();
+  externals: {
+    '@farmos.org/farmos-map': 'farmOS.map',
   },
 };

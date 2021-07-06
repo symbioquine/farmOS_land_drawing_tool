@@ -3,8 +3,8 @@
     <div>
       <ul class="local-actions">
         <li class="local-actions__item">
-          <a v-if="hasUnsavedLandAssets" href="#" class="button button--primary" role="button" @click.prevent="$emit('save')">Save Land Assets</a>
-          <a v-else href="#" class="button button--primary is-disabled" role="button" disabled aria-disabled="true">Save Land Assets</a>
+          <a v-if="hasUnsavedLandAssets" href="#" class="button button--primary" role="button" @click.prevent="$emit('save')">Save Land assets</a>
+          <a v-else href="#" class="button button--primary is-disabled" role="button" disabled aria-disabled="true">Save Land assets</a>
         </li>
       </ul>
     </div>

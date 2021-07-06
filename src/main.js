@@ -16,7 +16,9 @@ importAll(require.context('./components/', true, /\.vue$/));
 
 import App from './App.vue';
 
-
-new Vue({
-  render: h => h(App),
-}).$mount('#farm-land-drawing-tool-app');
+// Wait until all attached Drupal libraries get loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new Vue({
+    render: h => h(App),
+  }).$mount('#farm-land-drawing-tool-app');
+});
