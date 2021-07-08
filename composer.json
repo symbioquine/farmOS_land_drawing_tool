@@ -1,8 +1,8 @@
 {
-  "name": "symbioquine/farmos_vue_demo_page",
-  "description": "A demo page for farmOS built with Vue.js.",
+  "name": "symbioquine/farmos_land_drawing_tool",
+  "description": "A land drawing tool contrib module for farmOS.",
   "type": "drupal-module",
-  "homepage": "https://github.com/symbioquine/farmOS_vue_demo_page",
+  "homepage": "https://github.com/symbioquine/farmOS_land_drawing_tool",
   "authors": [
     {
       "name": "Symbioquine",
@@ -11,9 +11,9 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/symbioquine/farmOS_vue_demo_page/issues",
-    "source": "https://github.com/symbioquine/farmOS_vue_demo_page"
+    "issues": "https://github.com/symbioquine/farmOS_land_drawing_tool/issues",
+    "source": "https://github.com/symbioquine/farmOS_land_drawing_tool"
   },
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "minimum-stability": "dev"
 }

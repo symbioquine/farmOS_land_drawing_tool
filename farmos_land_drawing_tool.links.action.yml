@@ -1,0 +1,5 @@
+farmos_land_drawing_tool.content:
+  route_name: 'farmos_land_drawing_tool.content'
+  title: 'Draw Land assets'
+  appears_on:
+    - view.farm_asset.page_type

@@ -1,0 +1,8 @@
+name: farmOS Land Drawing Tool
+description: Provides a land drawing tool for farmOS
+type: module
+package: farmOS Contrib
+core_version_requirement: ^9
+dependencies:
+  - farm_land
+  - farm_map

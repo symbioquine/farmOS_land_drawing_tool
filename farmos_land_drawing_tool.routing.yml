@@ -1,0 +1,7 @@
+farmos_land_drawing_tool.content:
+  path: '/asset/draw/land'
+  defaults:
+    _controller: farmos_land_drawing_tool.top_level_controller:content
+    _title: 'Draw Land Assets'
+  requirements:
+    _permission: 'access content'
