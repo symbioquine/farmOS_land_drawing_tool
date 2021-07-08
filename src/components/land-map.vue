@@ -39,6 +39,21 @@ export default {
 
       vm.mapInstance = Drupal.behaviors.farm_map.createMapInstance(mapElement, mapElement, 'farm-land-drawing-tool-map-prototype', {});
 
+      const textStyleFn = (feature) => {
+        return new Text({
+          text: feature.get('name') || 'Unnamed Land Asset',
+          font: '10px Calibri,sans-serif',
+          overflow: true,
+          textAlign: 'start',
+          offsetX: 10,
+          offsetY: 2,
+          stroke: new Stroke({
+            color: '#8A8A8A',
+            width: 1
+          })
+        });
+      };
+
       const styleFn = function(feature) {
         const isHighlighted = (f) => f.get('mouseOver') || f.get('hasFocus');
 
@@ -69,18 +84,7 @@ export default {
             }),
             fill: fill,
             stroke: stroke,
-            text: showText ? new Text({
-              text: feature.get('name') || 'Unnamed Land Asset',
-              font: '10px Calibri,sans-serif',
-              overflow: true,
-              textAlign: 'start',
-              offsetX: 10,
-              offsetY: 2,
-              stroke: new Stroke({
-                color: '#8A8A8A',
-                width: 1
-              })
-            }) : undefined,
+            text: showText ? textStyleFn(feature) : undefined,
             zIndex: zIndex,
           })
         ];
@@ -98,6 +102,32 @@ export default {
       vm.mapInstance.addBehavior('edit', { layer: vm.unsavedLandAssetsLayer });
       vm.mapInstance.addBehavior('measure', { layer: vm.unsavedLandAssetsLayer });
       vm.mapInstance.addBehavior('snappingGrid');
+
+      this.mapInstance.map.getLayers().on('add', evt => {
+        const layer = evt.element;
+
+        if (layer.get('title') !== 'All locations') {
+          return;
+        }
+
+        const existingStyleFn = layer.getStyleFunction();
+
+        const decoratedStyleFn = (f) => {
+          const styles = [].concat(existingStyleFn(f));
+
+          const exstingTextStyle = styles.map(s => s.getText()).find(t => t);
+
+          if (!exstingTextStyle) {
+            styles.push(new Style({
+              text: textStyleFn(f),
+            }));
+          }
+
+          return styles;
+        };
+
+        layer.setStyle(decoratedStyleFn);
+      });
     });
   },
   methods: {
