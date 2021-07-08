@@ -1,6 +1,8 @@
 # farmOS_land_drawing_tool
 
-A land drawing tool contrib module for [farmOS](https://farmos.org/).
+A land drawing tool contrib module for [farmOS](https://farmos.org/) 2.x.
+
+![image](https://user-images.githubusercontent.com/30754460/124950481-4c81e800-dfc7-11eb-8c35-4545883d72ff.png)
 
 *Note: Some branches and tags include only the built module. See the [development branch][development branch] for the full source code.*
 
@@ -9,11 +11,11 @@ A land drawing tool contrib module for [farmOS](https://farmos.org/).
 Use Composer and Drush to install farmOS_land_drawing_tool in farmOS 2.x;
 
 ```sh
-composer require symbioquine/farmos_land_drawing_tool
+composer require drupal/farmos_land_drawing_tool
 drush en farmos_land_drawing_tool
 ```
 
-*Available released versions can be viewed at https://packagist.org/packages/symbioquine/farmos_land_drawing_tool*
+*Available released versions can be viewed at https://www.drupal.org/project/farmos_land_drawing_tool*
 
 ## Development
 
