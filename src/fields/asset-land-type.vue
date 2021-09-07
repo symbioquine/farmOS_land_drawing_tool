@@ -5,7 +5,7 @@
     </div>
     <div v-else>
       <v-select
-        placeholder="Other"
+        :placeholder="landTypePlaceholderText"
         :options="landTypeOptions"
         :reduce="o => o.id"
         :value="value.get('land_type')"
@@ -26,7 +26,7 @@ export default {
   components: {
     vSelect,
   },
-  fieldName: "Type",
+  fieldName: Drupal.t("Type"),
   fieldWeight: 2,
   props: {
     value: {
@@ -39,6 +39,7 @@ export default {
     },
   },
   data: () => ({
+    landTypePlaceholderText: Drupal.t('Other'),
     landTypeLabelsByType: drupalSettings.farmos_land_drawing_tool.land_type_options,
     landTypeOptions: Object.entries(drupalSettings.farmos_land_drawing_tool.land_type_options).map(o => ({id: o[0], label: o[1]})),
   }),

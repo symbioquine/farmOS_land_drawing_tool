@@ -75,8 +75,8 @@ export default {
         data: {
           type: "asset--land",
           attributes: {
-            name: f.get('name') || 'Unnamed Land Asset',
-            land_type: f.get('land_type') || 'other',
+            name: f.get('name') || Drupal.t('Unnamed Land Asset'),
+            land_type: f.get('land_type') || Drupal.t('other'),
             intrinsic_geometry: wkt.writeGeometry(f.getGeometry(), projection),
           },
         },

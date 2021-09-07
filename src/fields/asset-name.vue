@@ -7,7 +7,7 @@
       <input ref='input'
           :value="value.get('name')"
           @input="value.set('name', $event.target.value)"
-          placeholder="Unnamed Land Asset"
+          :placeholder="namePlaceholderText"
           @focus="$emit('focus')"
           @blur="$emit('blur')"
       ></input>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  fieldName: "Name",
+  fieldName: Drupal.t("Name"),
   fieldWeight: 1,
   props: {
     value: {
@@ -29,5 +29,8 @@ export default {
       required: false,
     },
   },
+  data: () => ({
+    namePlaceholderText: Drupal.t('Unnamed Land Asset'),
+  }),
 }
 </script>

@@ -41,7 +41,7 @@ export default {
 
       const textStyleFn = (feature) => {
         return new Text({
-          text: feature.get('name') || 'Unnamed Land Asset',
+          text: feature.get('name') || Drupal.t('Unnamed Land Asset'),
           font: '10px Calibri,sans-serif',
           overflow: true,
           textAlign: 'start',
@@ -91,7 +91,7 @@ export default {
       };
 
       vm.unsavedLandAssetsLayer = new VectorLayer({
-        title: "Unsaved Land Assets",
+        title: Drupal.t("Unsaved Land Assets"),
         source: vm.unsavedLandAssetsVectorSource,
         style: styleFn,
         declutter: false,
