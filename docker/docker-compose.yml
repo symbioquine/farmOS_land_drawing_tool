@@ -25,31 +25,10 @@ services:
             while { ! exec 3<>/dev/tcp/db/5432; } > /dev/null 2>&1; do sleep 0.1; done
         }
 
-        link_srcs() {
-          rm -rf /opt/drupal/web/libraries/farmOS-map
-          ln -sf /opt/testing_src_tree/farmOS-map /opt/drupal/web/libraries/farmOS-map
-
-          rm -rf /opt/drupal/web/profiles/farm/modules
-          ln -sf /opt/testing_src_tree/farmOS/modules /opt/drupal/web/profiles/farm/modules
-
-          rm -rf /opt/drupal/web/profiles/farm/config
-          ln -sf /opt/testing_src_tree/farmOS/config /opt/drupal/web/profiles/farm/config
-
-          rm -rf /opt/drupal/web/profiles/farm/src
-          ln -sf /opt/testing_src_tree/farmOS/src /opt/drupal/web/profiles/farm/src
-
-          rm -rf /opt/drupal/web/profiles/farm/{farm.info.yml,farm.install,farm.profile}
-          ln -sf /opt/testing_src_tree/farmOS/farm.info.yml /opt/drupal/web/profiles/farm/farm.info.yml
-          ln -sf /opt/testing_src_tree/farmOS/farm.install /opt/drupal/web/profiles/farm/farm.install
-          ln -sf /opt/testing_src_tree/farmOS/farm.profile /opt/drupal/web/profiles/farm/farm.profile
-          ln -sf /opt/testing_src_tree/farmOS/composer.json /opt/drupal/web/profiles/farm/composer.json
-        }
-
         if [ -d /opt/drupal ] && ! [ "$$(ls -A /opt/drupal/)" ]; then
           echo "farmOS codebase not detected. Copying from pre-built files in the Docker image."
           cp -rp /var/farmOS/. /opt/drupal
 
-          link_srcs
           wait_db_ready
 
           su www-data -s /bin/bash -c 'drush site-install farm --locale=en --db-url=pgsql://farm:farm@db/farm --site-name=Test0 --account-name=root --account-pass=test'
@@ -73,8 +52,6 @@ services:
       - './php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini'
       - '../farmos_land_drawing_tool:/farmos_dev_modules/farmos_land_drawing_tool'
       # Patched versions of farmOS-map and farmOS
-      - '../../farmOS-map:/opt/testing_src_tree/farmOS-map'
-      - '../../farmOS:/opt/testing_src_tree/farmOS'
     ports:
       - '80:80'
     environment:
