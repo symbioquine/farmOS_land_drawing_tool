@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2021-09-07
+
+### Changed
+
+- Make all user-facing text translatable
+
 ## [1.0.1] - 2021-09-06
 
 ### Changed
@@ -19,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.1...HEAD
+[unreleased]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.2...HEAD
+[1.0.2]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.1...unbuilt-v1.0.2
 [1.0.1]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.0...unbuilt-v1.0.1
 [1.0.0]: https://github.com/symbioquine/farmOS_land_drawing_tool/releases/tag/unbuilt-v1.0.0

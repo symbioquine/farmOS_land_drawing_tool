@@ -4,4 +4,6 @@ farmos_land_drawing_tool:
       preprocess: false
       minified: true
   dependencies:
+    - core/drupal
+    - core/drupalTranslations
     - farm_map/farm_map
