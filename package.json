@@ -1,6 +1,6 @@
 {
   "name": "farmOS_land_drawing_tool",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A land drawing tool contrib module for farmOS.",
   "license": "GPL-3.0-or-later",
   "repository": {
@@ -23,16 +23,18 @@
     "eslint-plugin-vue": "^6.2.2",
     "raw-loader": "^4.0.2",
     "style-loader": "^0.23.1",
+    "svg-inline-loader": "^0.8.2",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^5.36.0",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^4.0.0-beta.2"
   },
   "dependencies": {
-    "@farmos.org/farmos-map": "^1.4.2",
+    "bootstrap-icons": "^1.5.0",
+    "@farmos.org/farmos-map": "^2.0.4",
     "axios": "^0.21.1",
     "lodash": "^4.17.21",
-    "ol": "^6.5.0",
+    "ol": "^6.14.1",
     "portal-vue": "^2.1.7",
     "vue": "^2.6.12",
     "vue-async-computed": "^3.9.0",

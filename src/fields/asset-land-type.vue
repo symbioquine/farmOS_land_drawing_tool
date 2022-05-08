@@ -27,7 +27,7 @@ export default {
     vSelect,
   },
   fieldName: Drupal.t("Type"),
-  fieldWeight: 2,
+  fieldWeight: 3,
   props: {
     value: {
       type: Object,

@@ -23,6 +23,7 @@ import axios from 'axios';
 import Vue from 'vue';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
+import WKT from 'ol/format/WKT';
 import Feature from 'ol/Feature';
 
 import { projection } from '@farmos.org/farmos-map';
@@ -41,10 +42,19 @@ export default {
     recentlyCreatedLandAssets: {
       async get() {
         const result = await axios.get(createUrl('/api/asset/land?is_location=1&is_fixed=1&sort=-revision_created'));
+
+        const wkt = new WKT();
+
         return result.data.data.map((raw_asset) => {
+          let geometry = undefined;
+          if (raw_asset.attributes.geometry) {
+            geometry = wkt.readGeometry(raw_asset.attributes.geometry.value, projection);
+          }
+
           return new Feature({
             name: raw_asset.attributes.name,
             land_type: raw_asset.attributes.land_type,
+            geometry,
           });
         });
       },

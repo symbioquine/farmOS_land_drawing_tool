@@ -18,7 +18,7 @@
 <script>
 export default {
   fieldName: Drupal.t("Name"),
-  fieldWeight: 1,
+  fieldWeight: 2,
   props: {
     value: {
       type: Object,

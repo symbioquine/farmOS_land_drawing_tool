@@ -1,5 +1,10 @@
 <template>
-  <div class="farm-land-map" ref="map-container-div"></div>
+  <div>
+    <div class="farm-land-map" ref="map-container-div"></div>
+    <land-map-import-side-panel
+        v-if="mapInstance" :map-instance="mapInstance"
+        :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"></land-map-import-side-panel>
+  </div>
 </template>
 
 <script>
@@ -21,6 +26,9 @@ export default {
       required: true,
     },
   },
+  data: () => ({
+    mapInstance: undefined,
+  }),
   mounted: function () {
     const vm = this;
 
