@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2022-05-14
+
+### Added
+
+- Add geometry icons to the table of unsaved and recently created land assets
+- Add an import panel to the map allowing land assets to be imported from geoJSON/KML files
+
 ## [1.0.2] - 2021-09-07
 
 ### Changed
@@ -25,7 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.2...HEAD
+[unreleased]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.3...HEAD
+[1.0.3]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.2...unbuilt-v1.0.3
 [1.0.2]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.1...unbuilt-v1.0.2
 [1.0.1]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.0...unbuilt-v1.0.1
 [1.0.0]: https://github.com/symbioquine/farmOS_land_drawing_tool/releases/tag/unbuilt-v1.0.0
