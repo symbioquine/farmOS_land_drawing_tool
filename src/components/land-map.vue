@@ -4,12 +4,13 @@
     <land-map-import-side-panel
         v-if="mapInstance" :map-instance="mapInstance"
         :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"></land-map-import-side-panel>
+    <land-map-bed-generator-side-panel
+        v-if="mapInstance" :map-instance="mapInstance"
+        :unsaved-land-assets-vector-source.sync="unsavedLandAssetsVectorSource"></land-map-bed-generator-side-panel>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
-
 import VectorLayer from 'ol/layer/Vector';
 import {
   Circle,

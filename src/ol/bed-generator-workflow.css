@@ -1,0 +1,27 @@
+.bed-generator-active .ol-edit {
+  display: none;
+}
+
+.unit-selector-bed-generator {
+  bottom: 7.5em;
+  right: .5em;
+}
+.confirm-bed-generator {
+  bottom: 5em;
+  right: .5em;
+}
+.cancel-bed-generator {
+  bottom: 2.5em;
+  right: .5em;
+  color: red;
+}
+.cancel-bed-generator.ol-control button {
+  color: red;
+}
+.bed-generator-dim-popup input {
+  width: 4em;
+  margin: 0;
+  border: 1px solid;
+  padding: 3px;
+  text-align: center;
+}

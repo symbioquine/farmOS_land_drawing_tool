@@ -1,7 +1,7 @@
 <template>
   <div>
-    <MountingPortal v-if="paneAdded" :mountTo="mountPoint" append>
-      <slot></slot>
+    <MountingPortal v-if="paneRef" :mountTo="mountPoint" append>
+      <slot :pane="paneRef"></slot>
     </MountingPortal>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
     },
   },
   data: () => ({
-    paneAdded: false,
+    paneRef: undefined,
   }),
   computed: {
     mountPoint() {
@@ -44,11 +44,11 @@ export default {
         return;
       }
 
-      const existingImportPane = this.mapInstance.sidePanel.getPaneById('import');
+      const existingPane = this.mapInstance.sidePanel.getPaneById(this.paneId);
 
-      // Only add the import pane once
-      if (existingImportPane) {
-        this.paneAdded = true;
+      // Only add the pane once
+      if (existingPane) {
+        this.paneRef = existingPane;
         return;
       }
 
@@ -64,7 +64,7 @@ export default {
 
       pane.addWidgetElement(paneContainerDiv);
 
-      this.paneAdded = true;
+      this.paneRef = pane;
     };
 
     tryCreatingSidePane();
