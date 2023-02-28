@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2023-02-28
+
+### Fixed
+
+- Clean up old files from template repo - fixes #1
+
 ## [1.0.4] - 2022-05-16
 
 ### Added
@@ -38,7 +44,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.4...HEAD
+[unreleased]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.5...HEAD
+[1.0.5]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.4...unbuilt-v1.0.5
 [1.0.4]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.3...unbuilt-v1.0.4
 [1.0.3]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.2...unbuilt-v1.0.3
 [1.0.2]: https://github.com/symbioquine/farmOS_land_drawing_tool/compare/unbuilt-v1.0.1...unbuilt-v1.0.2
