@@ -1,6 +1,6 @@
 # farmOS_land_drawing_tool
 
-A land drawing tool contrib module for [farmOS](https://farmos.org/) 2.x.
+A land drawing tool contrib module for [farmOS](https://farmos.org/) 3.x.
 
 ![image](https://user-images.githubusercontent.com/30754460/124950481-4c81e800-dfc7-11eb-8c35-4545883d72ff.png)
 
@@ -8,7 +8,7 @@ A land drawing tool contrib module for [farmOS](https://farmos.org/) 2.x.
 
 ## Installation
 
-Use Composer and Drush to install farmOS_land_drawing_tool in farmOS 2.x;
+Use Composer and Drush to install farmOS_land_drawing_tool in farmOS 3.x;
 
 ```sh
 composer require drupal/farmos_land_drawing_tool
@@ -46,6 +46,7 @@ From the [development branch][development branch] of this repository:
 git add [...]
 # Update NPM package version and commit
 npm --no-git-tag-version version --force patch
+git add -u
 git commit
 # Tag the release with the unbuilt prefix
 git tag unbuilt-v9000.0.1

@@ -16,6 +16,8 @@ jobs:
         run: until [ -f ./www/www-container-fs-ready ]; do sleep 0.1; done && while { ! exec 3<>/dev/tcp/localhost/5432; } > /dev/null 2>&1; do sleep 0.1; done
       - name: Do a site-install
         run: docker-compose exec -u www-data -T www bash -c 'drush site-install farm --locale=en --db-url=pgsql://farm:farm@db/farm --site-name=Test0 --account-name=root --account-pass=test'
+      - name: Enable oauth prereqs via drush
+        run: docker-compose exec -u www-data -T www drush en simple_oauth_password_grant farm_api_default_consumer
       - name: Add farmOS_land_drawing_tool via composer
         run: docker-compose exec -u www-data -T www composer require drupal/farmos_land_drawing_tool
       - name: Use drush to enable farmOS_land_drawing_tool
