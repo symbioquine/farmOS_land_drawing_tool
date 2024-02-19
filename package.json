@@ -1,6 +1,6 @@
 {
   "name": "farmOS_land_drawing_tool",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A land drawing tool contrib module for farmOS.",
   "license": "GPL-3.0-or-later",
   "repository": {
